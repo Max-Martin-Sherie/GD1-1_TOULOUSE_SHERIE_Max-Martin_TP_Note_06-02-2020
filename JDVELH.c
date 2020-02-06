@@ -26,6 +26,7 @@ int deplacement(chapitre * adresse){
     printf("\n");
     
     while(numChapitreD<-1 || numChapitreD>i){
+        printf("\n ! DEPLACEMENT IMPOSSIBLE !\n");
         scanf("%d",&numChapitreD);
     }
 
