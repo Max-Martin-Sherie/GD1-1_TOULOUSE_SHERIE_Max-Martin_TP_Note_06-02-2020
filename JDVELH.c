@@ -44,7 +44,7 @@ int main(){
     // fonction
     
     while(numChapitre!=-1){
-        printf("Chapitre %d : ",numChapitre);
+        printf("\nChapitre %d : ",numChapitre);
         printf("%s",chapitres[numChapitre].description);
 
 
