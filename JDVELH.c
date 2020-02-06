@@ -16,6 +16,7 @@ int numChoix;
 int numChoixChapitre;
 int numChapitre;
 int or;
+int PDV;
 
 int deplacement(chapitre * adresse){  
     int numChapitreD=-2;
@@ -48,22 +49,25 @@ int main(){
     // Affectation des variables globales
     numChapitre=0;
     numChoix=-1;
-    or=10;
+    or=0;
+    PDV = 80;
 
     //Creation des structures
-    chapitre chapitres[15]={{"Aller a ZELANDIA",0,10,{1,2},0},
-                    {"Aller a IRLANDIA",10,10,{0,2},10},
-                    {"Aller a BRITANNIA",30,10,{0,1}},15};
+    chapitre chapitres[15]={{"Aller a ZELANDIA",0,20,{1,2},0},
+                    {"Aller a IRLANDIA",10,-10,{0,2},10},
+                    {"Aller a BRITANNIA",30,-15,{0,1}},15};
 
     // fonction
     
-    while(numChapitre!=-1 && numChoixChapitre!=-1){
+    while(numChapitre!=-1 && numChoixChapitre!=-1 && PDV>0){
         numChoix=-1;
-        printf("\n\nVous avez %d or\n\n",or);
+        printf("\n\nVous avez %d or\n",or);
+        printf("\nVous avez %dPDV\n\n",PDV);
         printf("\nChapitre %d : ",numChapitre);
         printf("%s",chapitres[numChapitre].description);
 
         or += chapitres[numChapitre].gainOr;
+        PDV += chapitres[numChapitre].gainPDV;
 
         printf("\n\nVous gagnez %d or",chapitres[numChapitre].gainOr);
 
@@ -71,10 +75,9 @@ int main(){
 
         numChoixChapitre=deplacement(&chapitres[numChapitre]);
         
-        while(chapitres[numChoixChapitre].prix >= or+1){
+        while(chapitres[numChoixChapitre].prix > or){
             printf("\n\nVous n'avez pas assez d'argent pour faire ce niveau\n\n");
             numChoixChapitre=deplacement(&chapitres[numChapitre]);
-
         }
 
         while(chapitres[numChoixChapitre].prix>0 && numChoix!=1){
